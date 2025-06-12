@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 
 export default function Roast() {
   const [name, setName] = useState('');
@@ -7,7 +7,7 @@ export default function Roast() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e:Event) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!name.trim()) {
       setError('Please enter a name');
@@ -32,8 +32,8 @@ export default function Roast() {
       } else {
         setRoast(data.roast);
       }
-    } catch (err:any) {
-      setError(err);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An unknown error occurred');
     } finally {
       setIsLoading(false);
     }
@@ -44,11 +44,7 @@ export default function Roast() {
       <div className="w-full max-w-md bg-gray-700 rounded-lg shadow-md p-6">
         <h1 className="text-2xl font-bold text-center mb-6">Name Roaster 🔥</h1>
         
-        <form onSubmit={(e:any)=> {
-            handleSubmit(e)
-            }
-        }
-             className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="name" className="block text-sm font-medium mb-1">
               Enter your name:
@@ -84,5 +80,5 @@ export default function Roast() {
         )}
       </div>
     </div>
-  );
+  ); 
 }
