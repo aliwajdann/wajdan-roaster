@@ -42,7 +42,7 @@ export default function Roast() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-900">
       <div className="w-full max-w-md bg-gray-700 rounded-lg shadow-md p-6">
-        <h1 className="text-2xl font-bold text-center mb-6">Name Roaster 🔥</h1>
+        <h1 className="text-2xl font-bold text-center mb-6">Name Roaster by Ali Wajdan 🔥</h1>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
