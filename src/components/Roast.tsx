@@ -7,7 +7,7 @@ export default function Roast() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e:Event) => {
     e.preventDefault();
     if (!name.trim()) {
       setError('Please enter a name');
@@ -32,8 +32,8 @@ export default function Roast() {
       } else {
         setRoast(data.roast);
       }
-    } catch (err) {
-      setError('Failed to connect to the roast server');
+    } catch (err:any) {
+      setError(err);
     } finally {
       setIsLoading(false);
     }
@@ -44,7 +44,11 @@ export default function Roast() {
       <div className="w-full max-w-md bg-gray-700 rounded-lg shadow-md p-6">
         <h1 className="text-2xl font-bold text-center mb-6">Name Roaster 🔥</h1>
         
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={(e:any)=> {
+            handleSubmit(e)
+            }
+        }
+             className="space-y-4">
           <div>
             <label htmlFor="name" className="block text-sm font-medium mb-1">
               Enter your name:
@@ -74,7 +78,7 @@ export default function Roast() {
 
         {roast && (
           <div className="mt-6 p-4 bg-gray-500 border-l-4 border-yellow-400 ">
-            <h2 className="font-bold mb-2">Your Roast:</h2>
+            <h2 className="font-bold mb-2">Roast:</h2>
             <p className="whitespace-pre-line overflow-y-scroll no-scrollbar">{roast}</p>
           </div>
         )}
